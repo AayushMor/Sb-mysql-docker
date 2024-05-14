@@ -1,0 +1,25 @@
+version: "3"
+services:
+  application:
+    image: sb-mysql-docker
+    ports:
+      - 4040:7070
+    networks:
+      - docnet
+    depends_on:
+      - mysqldb
+    volumes:
+      - /data/Springboot-mysql-docker
+
+  mysqldb:
+    image: mysql:5.7
+    networks:
+      - docnet
+    environment:
+      - MYSQL_ROOT_PASSWORD=root
+      - MYSQL_DATABASE=sqlDocker
+    volumes:
+      - /data/mysql
+
+networks:
+  docnet:
